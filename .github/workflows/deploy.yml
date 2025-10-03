@@ -2,7 +2,10 @@ name: Build and Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]   # Trigger deploy when pushing to main
+    branches: [main]   # Runs when you push to main
+
+permissions:
+  contents: write      # 👈 allow workflow to push to gh-pages
 
 jobs:
   build-and-deploy:
@@ -10,20 +13,21 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3   # updated version
+        uses: actions/checkout@v3
 
       - name: Setup Node.js ⚙️
         uses: actions/setup-node@v3
         with:
-          node-version: 18   # or 20 if your React project supports
+          node-version: 18   # use same version as local dev
 
       - name: Install and Build 🔧
         run: |
-          npm ci            # faster & cleaner than npm install
+          npm ci
           npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages   # The branch to deploy to
-          folder: build      # The folder that contains the built app
+          branch: gh-pages     # Deploy to gh-pages branch
+          folder: build        # Deploy build folder
+          token: ${{ secrets.GITHUB_TOKEN }}   # 👈 gives permission
