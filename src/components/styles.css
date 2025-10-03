@@ -1,0 +1,212 @@
+/* === Search Bar === */
+.Searchbar {
+  top: 0;
+  left: 0;
+  position: sticky;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Search Form */
+.SearchForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 640px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.SearchForm:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Input */
+.SearchForm-input {
+  flex: 1;
+  font-size: 16px;
+  padding: 14px 20px;
+  border: none;
+  outline: none;
+  color: #111827;
+  background: transparent;
+  font-weight: 400;
+}
+
+.SearchForm-input::placeholder {
+  color: #9ca3af;
+  font-weight: 300;
+}
+
+/* Search Button */
+.SearchForm-button {
+  background: transparent;
+  border: none;
+  padding: 14px 26px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 0 50px 50px 0;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.SearchForm-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+
+.SearchForm-button:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+/* === Gallery Grid === */
+.Gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 36px 24px;
+  background: #f9fafb;
+}
+
+/* Gallery Card Style */
+.Gallery-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.Gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+/* Hover effect */
+.Gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.Gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Caption */
+.Gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 18px;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* === Modal === */
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(17, 24, 39, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.Modal {
+  max-width: 92%;
+  max-height: 92%;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.3s ease;
+}
+
+.Modal img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* === Button Wrapper === */
+.ButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+/* === Load More Button === */
+.Button {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 999px; /* pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Hover effect */
+.Button:hover {
+  background: linear-gradient(135deg, #4338ca, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Active effect (when clicked) */
+.Button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+}
+
+/* Focus outline for accessibility */
+.Button:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 3px;
+}
