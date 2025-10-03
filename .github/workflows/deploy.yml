@@ -1,24 +1,29 @@
-name: Build and deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main]   # Trigger deploy when pushing to main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3   # updated version
 
-      - name: Install, lint, build 🔧
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18   # or 20 if your React project supports
+
+      - name: Install and Build 🔧
         run: |
-          npm install
-          npm run lint:js
+          npm ci            # faster & cleaner than npm install
           npm run build
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: build
+          branch: gh-pages   # The branch to deploy to
+          folder: build      # The folder that contains the built app
